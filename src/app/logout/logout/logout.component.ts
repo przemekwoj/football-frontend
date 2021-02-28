@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BackendTestServiceService } from 'src/app/test/backend-test-service.service';
 
 @Component({
   selector: 'logout',
@@ -8,12 +7,12 @@ import { BackendTestServiceService } from 'src/app/test/backend-test-service.ser
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private backendService: BackendTestServiceService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   public logout() {
-    this.backendService.logout()
+    // this.backendService.logout()
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BackendTestServiceService } from 'src/app/test/backend-test-service.service';
-import { Test } from 'src/app/test/InterfaceTest';
+import { LoginService } from '../../loginService/login-service.service';
 
 @Component({
   selector: 'gmail-login',
@@ -9,26 +8,16 @@ import { Test } from 'src/app/test/InterfaceTest';
 })
 export class GmailLoginComponent implements OnInit {
 
-  public testObject: Test = new Test("t", "t");
+  private authenticationSegment: string;
 
-  constructor(private backendService: BackendTestServiceService) { }
+  constructor(private loginService: LoginService) {
+    this.authenticationSegment = "oauth2/authorization/google";
+   }
 
   ngOnInit(): void {
-    //     this.backendService.getTest()
-    // .subscribe(data => {
-    //   this.testObject=data;
-    //   console.log(this.testObject);
-    // });
-   
   }
 
   public open() {
-    console.log("open");
-    this.backendService.getAuthentication()
-    // this.backendService.getAuthentication()
-    // .subscribe(data => {
-    //   console.log("Autoryzacja complete")
-    //   console.log(data);
-    // });
+    this.loginService.oauth2Authentication(this.authenticationSegment)
   }
 }

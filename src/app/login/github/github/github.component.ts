@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BackendTestServiceService } from 'src/app/test/backend-test-service.service';
+import { LoginService } from '../../loginService/login-service.service';
 
 @Component({
   selector: 'github-login',
@@ -8,14 +8,16 @@ import { BackendTestServiceService } from 'src/app/test/backend-test-service.ser
 })
 export class GithubComponent implements OnInit {
 
-  constructor(private backendService: BackendTestServiceService) { }
+  private authenticationSegment: string;
+
+  constructor(private loginService: LoginService) { 
+    this.authenticationSegment = 'oauth2/authorization/github';
+  }
 
   ngOnInit(): void {
   }
 
-  public open() {
-    console.log("open");
-    this.backendService.getAuthenticationGitHub()
-
+  public authentication() {
+    this.loginService.oauth2Authentication(this.authenticationSegment)
   }
 }

@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CallbackComponent } from './login/callback/callback/callback.component';
 import { HomeComponent } from './home/home/home.component';
 import { LoginComponent } from './login/login/login.component';
+import { GoogleCallbackComponent } from './login/callback/googleCallback/google-callback/google-callback.component';
+import { GithubCallbackComponent } from './login/callback/githubCallback/github-callback/github-callback.component';
 
 const routes: Routes = [
-  // { path: '', component: LoginComponent },
-  // { path: 'login', component: LoginComponent }
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'callback', component: CallbackComponent}
-
+  { path: 'callback/google', component: GoogleCallbackComponent},
+  { path: 'callback/github', component: GithubCallbackComponent}
 ];
 
 @NgModule({

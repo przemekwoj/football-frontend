@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BackendTestServiceService } from 'src/app/test/backend-test-service.service';
+import { LoginService } from 'src/app/login/loginService/login-service.service';
+import { TestService } from 'src/app/test/test.service';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +9,11 @@ import { BackendTestServiceService } from 'src/app/test/backend-test-service.ser
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private backendService: BackendTestServiceService) { }
+  constructor(private testService: TestService) { }
 
   ngOnInit(): void {
     console.log("home")
-    this.backendService.home().subscribe(data =>{
+    this.testService.home().subscribe(data =>{
       console.log("response home")
       console.log(data)
     });

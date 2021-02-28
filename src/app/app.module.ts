@@ -7,9 +7,10 @@ import { LoginComponent } from './login/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home/home.component';
 import { GmailLoginComponent } from './login/gmailLogin/gmail-login/gmail-login.component';
-import { CallbackComponent } from './login/callback/callback/callback.component';
 import { LogoutComponent } from './logout/logout/logout.component';
 import { GithubComponent } from './login/github/github/github.component';
+import { GoogleCallbackComponent } from './login/callback/googleCallback/google-callback/google-callback.component';
+import { GithubCallbackComponent } from './login/callback/githubCallback/github-callback/github-callback.component';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,10 @@ import { GithubComponent } from './login/github/github/github.component';
     LoginComponent,
     HomeComponent,
     GmailLoginComponent,
-    CallbackComponent,
     LogoutComponent,
-    GithubComponent
+    GithubComponent,
+    GoogleCallbackComponent,
+    GithubCallbackComponent
     ],
   imports: [
     BrowserModule,

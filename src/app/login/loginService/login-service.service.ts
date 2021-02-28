@@ -1,38 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Test } from './InterfaceTest';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginServiceService {
+export class LoginService {
 
   private baseUrl: string = "http://localhost:8080/";
-  private googleTokenEndpoint: string = "oauth2/authorization/google";
-  private googleAuthorizeEndpoint = '/oauth2/authorization/google'
-  private redirect = "home";
+
   private token = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  getAuthentication() {
-    window.open(this.baseUrl+this.googleAuthorizeEndpoint,"_self")
+  oauth2Authentication(authenticationSegment: string) {
+    window.open(this.baseUrl + authenticationSegment,"_self")
   }
 
-
-  fetchGoogleToken(code: string, state:string): Observable<any> {
-    return this.http.get<any>(this.baseUrl+this.googleTokenEndpoint+"?code="+code+"&state="+state);
+  fetchTokenAndRidirect(tokenSegment: string) {
+    this.http.get<any>(this.baseUrl + tokenSegment).subscribe(data => {
+        this.setToken(data.accessToken);
+        this.router.navigate(['/home']);
+      })
   }
 
-  setToken(token:string){
+  private setToken(token:string){
     this.token = token;
   }
 
-  home() : Observable<any>{
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.token}`
-    })
-    return this.http.get(this.baseUrl + this.redirect, { headers: headers });
-  }
+  public getToken() {
+    return this.token;
+  } 
 }
