@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../../authentication.service';
+import { HttpMethodService } from 'src/app/httpMethod/http-method.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,26 +11,18 @@ export class LoginService {
 
   private baseUrl: string = "http://localhost:8080/";
 
-  private token = '';
-
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpMethodService, 
+    private router: Router,
+    private authenticationService: AuthenticationService) { }
 
   oauth2Authentication(authenticationSegment: string) {
     window.open(this.baseUrl + authenticationSegment,"_self")
   }
 
   fetchTokenAndRidirect(tokenSegment: string) {
-    this.http.get<any>(this.baseUrl + tokenSegment).subscribe(data => {
-        this.setToken(data.accessToken);
+    this.http.get<any>(tokenSegment).subscribe(data => {
+        this.authenticationService.setToken(data.accessToken);
         this.router.navigate(['/home']);
       })
   }
-
-  private setToken(token:string){
-    this.token = token;
-  }
-
-  public getToken() {
-    return this.token;
-  } 
 }

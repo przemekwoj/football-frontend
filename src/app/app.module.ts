@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login/login.component';
+import { LoginComponent } from './security/login/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home/home.component';
-import { GmailLoginComponent } from './login/gmailLogin/gmail-login/gmail-login.component';
-import { LogoutComponent } from './logout/logout/logout.component';
-import { GithubComponent } from './login/github/github/github.component';
-import { GoogleCallbackComponent } from './login/callback/googleCallback/google-callback/google-callback.component';
-import { GithubCallbackComponent } from './login/callback/githubCallback/github-callback/github-callback.component';
+import { GmailLoginComponent } from './security/login/gmailLogin/gmail-login/gmail-login.component';
+import { LogoutComponent } from './security/logout/logout/logout.component';
+import { GithubComponent } from './security/login/github/github/github.component';
+import { GoogleCallbackComponent } from './security/login/callback/googleCallback/google-callback/google-callback.component';
+import { GithubCallbackComponent } from './security/login/callback/githubCallback/github-callback/github-callback.component';
 
 @NgModule({
   declarations: [

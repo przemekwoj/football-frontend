@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/login/loginService/login-service.service';
+import { LoginService } from 'src/app/security/login/loginService/login-service.service';
 import { TestService } from 'src/app/test/test.service';
 
 @Component({
@@ -14,6 +14,13 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     console.log("home")
     this.testService.home().subscribe(data =>{
+      console.log("response home")
+      console.log(data)
+    });
+  }
+
+  home2() {
+    this.testService.home2().subscribe(data =>{
       console.log("response home")
       console.log(data)
     });
