@@ -1,23 +1,38 @@
 import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class AuthenticationService implements CanActivate{
 
-  private token = '';
+  private authenticated: boolean = false;
+  private tokenKey = 'token';
 
-  constructor() { }
+  constructor(private router: Router) {
+    console.log("authservice")
+   }
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean>|Promise<boolean>|boolean {
+    if (localStorage.getItem(this.tokenKey) == null) {
+      this.router.navigate(['login']);
+    }
+    return true;
+  }
 
   public setToken(token:string){
-    this.token = token;
+    localStorage.setItem(this.tokenKey, token);
   }
 
   public removeToken() {
-    this.token = '';
+    localStorage.removeItem(this.tokenKey);
   }
 
   public getToken() {
-    return this.token;
+    return localStorage.getItem(this.tokenKey);
   } 
 }
