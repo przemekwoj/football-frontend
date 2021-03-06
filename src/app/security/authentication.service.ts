@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class AuthenticationService implements CanActivate{
 
-  private authenticated: boolean = false;
   private tokenKey = 'token';
 
   constructor(private router: Router) {
